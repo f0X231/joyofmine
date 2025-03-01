@@ -1,4 +1,4 @@
-@extends('layouts.cms')
+@extends('layouts.adminTemplate')
 
 @section('cmscontent')
 

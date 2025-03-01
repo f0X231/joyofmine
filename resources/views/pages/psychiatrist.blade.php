@@ -1,19 +1,6 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
-
-<style>
-  .doctor__main {
-    margin: 50px 0;
-  }
-  .doctor__list a {
-    color: #5dc9c9;
-  }
-  .doctor__name {
-    margin: 8px 0 50px 0;
-  }
-
-</style>
 
 @include('includes.banner')
 
@@ -29,7 +16,7 @@
         @foreach ($psychiatrist as $item)
             <div class="col-md-4 col-sm-6 col-12 doctor__list">
                 <a href="{{$item['slug']['th']}}">
-                    <div><img src="{{$item['thumbnail']}}" width="100%" /></div>
+                    <div><img src="{{$item['thumbnail']}}?ver=987" width="100%" /></div>
                     <p class="doctor__name text-center fontSize15rem colorPrimary">{{$item['title']['th']}}</p>
                 </a>
             </div>

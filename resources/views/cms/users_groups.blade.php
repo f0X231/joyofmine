@@ -1,53 +1,75 @@
-@extends('layouts.cms')
+@extends('layouts.adminTemplate')
 
 @section('cmscontent')
 
-<!-- DataTable -->
-<link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+<!-- partial -->
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> @lang('cms_default.roles.list.title') </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item">
+                    <a href="/cms/groups/new">
+                        <button class="btn btn-success">@lang('cms_default.roles.list.btn_add')</button>
+                    </a>
+                </li>
+                {{-- <li class="breadcrumb-item active" aria-current="page">@lang('dashboards.pages.room.form.basecamp.page-all')</li> --}}
+            </ol>
 
-<!-- Content -->
-<div class="row">
-  <!-- Earnings (Monthly) Card Example -->
-  <div class="col-md-12">
-    <table class="table table-bordered" id="dataTableGroups" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Position</th>
-          <th>Office</th>
-          <th>Age</th>
-          <th>Start date</th>
-          <th>Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
-          <td>61</td>
-          <td>2011/04/25</td>
-          <td>$320,800</td>
-        </tr>
-        <tr>
-          <td>Garrett Winters</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-          <td>63</td>
-          <td>2011/07/25</td>
-          <td>$170,750</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            {{-- <div class="rows breadcrumb">
+              <input type="hidden" name="_tokenCSRF" id="_tokenCSRF" value="{{ csrf_token() }}" />
+              <div class="col-12 col-md-4">
+                <div class="form-group">
+                  <label for="searchSelectPage">เลือกหน้า</label>
+                  <select class="form-control" id="searchSelectPage" name="searchSelectPage">
+                    @foreach ($searchpage as $key => $page)
+                      <option value="{{$key}}">{{$page}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <label for="searchByText">ค้นหา</label>
+                <input type="text" class="form-control" id="searchByText" name="searchByText" aria-describedby="emailHelp" placeholder="ค้นหา">
+              </div>
+              <div class="col-12 col-md-4">
+                <button type="button" id="btnSearchPano" name="btnSearchPano" class="btn btn-secondary mt-4" disabled>ค้นหา</button>
+              </div>
+            </div> --}}
+        </nav>
+    </div>
+
+    @include('cms/table/tableBorderUserGroups', [
+                                                  'title'       => 'Panorama Table',
+                                                  'description' => 'List of all <code>Roles</code> in Joy of Minds',
+                                                  'roles'       => $grouproles,
+                                                  'header'      => $header
+                                              ])
 </div>
 
-<!-- DataTable -->
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $('#dataTableGroups').DataTable();
-  });
-</script>
+  $(document).ready(function(){
 
-@stop
+    $("button").click(function(){
+      $("p").slideToggle();
+
+      $.ajax({
+        url: "url", 
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ name: 'value1', email: 'value2' }),
+        success: function (result) {
+            // when call is sucessfull
+          },
+          error: function (err) {
+          // check the err for error details
+          }
+      }); /
+
+    });
+
+  });
+<script>
+
+@endsection

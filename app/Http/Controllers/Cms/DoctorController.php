@@ -9,6 +9,8 @@ class DoctorController extends Controller
 {
     public function index()
     {
+        parent::chkSessionAuthen();
+        
         // Get Doctor
         $doctor = parent::getListOfDoctor();
 

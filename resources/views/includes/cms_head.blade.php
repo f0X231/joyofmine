@@ -1,12 +1,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Dashboard admin of joy of minds clinic">
+<meta name="description" content="Dashboard admin of joy of minds clinic for management content">
 <meta name="author" content="@f0X231">
 <meta name="robots" content="noindex">
 <meta name="googlebot" content="noindex">
 
-<title>JOY Admin - Dashboard</title>
+<title>Joy of Minds Admin - Dashboard</title>
 
 <!-- JavaScript-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"

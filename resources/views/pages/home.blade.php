@@ -1,167 +1,10 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
 
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
-<style>
-  /* Doctor */
-  .doctor__list {
-    margin: 80px 0 135px 0;
-  }
-  .doctor__ico__arrow {
-    width: 25px;
-    height: 25px;
-  }
-  .cascade-slider_container {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    margin: 25px auto;
-    padding-top: 150px;
-  }
-  .cascade-slider_item {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%) scale(0.3);
-    transition: all 1s ease;
-    opacity: 0;
-    z-index: -1;
-    text-align: center;
-  }
-  .cascade-slider_item img {
-    width: 400px;
-  }
-  .cascade-slider_item.next {
-    left: 50%;
-    transform: translateY(-50%) translateX(-150%) scale(0.6);
-    opacity: 1;
-    z-index: 1;
-  }
-  .cascade-slider_item.prev {
-    left: 50%;
-    transform: translateY(-50%) translateX(50%) scale(0.6);
-    opacity: 1;
-    z-index: 1;
-  }
-  .cascade-slider_item.now {
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%) scale(1);
-    opacity: 1;
-    z-index: 5;
-  }
-  .cascade-slider_arrow {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-    z-index: 5;
-    
-  }
-  .cascade-slider_arrow-left { left: 0; }
-  .cascade-slider_arrow-right { right: 0; }
-  .cascade-slider_nav {
-    position: absolute;
-    bottom: -150px;
-    width: 100%;
-    text-align: center;
-    z-index: 5;
-  }
-  .cascade-slider_dot {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin: 1em;
-    border-radius: 10px;
-    background: #ddd;
-    list-style: none;
-    cursor: pointer;
-  }
-  .cascade-slider_dot:hover { background: #555; }
-  .cascade-slider_dot.cur { background: #555; }
-
-  /* VDO */
-  .video-container {
-    overflow: hidden;
-    position: relative;
-    width:100%;
-  }
-  .video-container::after {
-    padding-top: 56.25%;
-    display: block;
-    content: '';
-  }
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* MAP */
-  .map-responsive{
-    position:relative;
-    /* overflow:hidden;
-    padding-bottom:50%;
-    height:0; */
-  }
-  .map-responsive iframe{
-      left:0;
-      top:0;
-      height:100%;
-      width:100%;
-      position:absolute;
-  }
-  /* Contact */
-  .home__contact__section {
-    margin-top: 50px;
-  }
-  .home__contact__box {
-    background-color: white;
-    border: 1px solid #cccccc;
-  }
-  .home__services__section {
-    margin: 50px 0;
-  }
-  .home__services__box {
-    margin-top: 25px;
-  }
-  .home__services__box a:hover {
-    color: black;
-  }
-  .home__contact__box_info {
-    min-height: 80px;
-  }
-  .home__services__title {
-    margin-top: 15px;
-    margin-bottom: 0;
-  }
-  .home__services__txt {
-    line-height: 1;
-  }
-
-  
-  /* Small devices (landscape phones, less than 576px) */
-  @media (max-width: 575.98px) {
-    .home__contact__section {
-      margin-top: 25px;
-    }
-    .home__contact__box {
-      margin-top: 8px;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .modal-dialog {
-      max-width: 800px;
-    }
-  }
-
-</style>
 
 @include('includes.banner')
 
@@ -226,7 +69,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12 doctor__list">
+        <div class="col-12 doctor__list2">
 
           <!-- On Mobile -->
           <div class="col-10 offset-1 d-block d-sm-none">
@@ -344,7 +187,7 @@
             <div class="col-sm-4 col-12 text-center home__contact__box">
               <img src="{{ asset('images/ico_map_pin.svg') }}" class="icoInfo" />
               <h4>{{ __('home.contact_title_1') }}</h4>
-              <div class="home__contact__box_info">{{ __('home.contact_address') }}</div>
+              <div class="home__contact__box_info">{!! __('home.contact_address') !!}</div>
               <br />
               <div class="fontSize15rem">
                 <a href="https://www.google.com/maps?saddr=Current+Location&daddr=13.745728917160257,100.56217863046466" target="_blank">

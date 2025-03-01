@@ -13,6 +13,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        parent::chkSessionAuthen();
+        
         $data = array();
         $results = Articles::orderBy('order_no', 'asc')->get();
         foreach($results as $key => $items) {

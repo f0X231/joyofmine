@@ -7,14 +7,19 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\EmployeeController;
+
+/* Authentication */
+use App\Http\Controllers\Authen\AuthenticationController as AuthenController;
+
 /* CMS Controller */
 use App\Http\Controllers\Cms\DashboardController;
 use App\Http\Controllers\Cms\DoctorController as CMSDoctorController;
 use App\Http\Controllers\Cms\ArticleController as CMSArticleController;
 use App\Http\Controllers\Cms\ServiceController as CMSServiceController;
-use App\Http\Controllers\Cms\SeoController as CMSSeoController;
+// use App\Http\Controllers\Cms\SeoController as CMSSeoController;
 use App\Http\Controllers\Cms\UserController as CMSUserController;
 use App\Http\Controllers\Cms\GroupController as CMSGroupController;
+use App\Http\Controllers\Cms\PanoController as CMSPanoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,39 +65,83 @@ Route::get('services/{id}/{name}',                  [ServiceController::class, '
 Route::get('pain-management',                       [ServiceController::class, 'indexPainManagement']);
 Route::get('articles',                              [ArticleController::class, 'index']);
 Route::get('articles/{id}/{name}',                  [ArticleController::class, 'detail']);
-/* Login to system. */
+
+
+/* Authentication: Login to system. */
+Route::get('/login',                [AuthenController::class, 'index']);
+Route::post('/authentication',      [AuthenController::class, 'authenLogin']); 
+Route::get('/forgot-password',      [AuthenController::class, 'forgotPassword']);
+Route::post('/reset-password',      [AuthenController::class, 'resetPassword']);
+Route::get('/new-password',         [AuthenController::class, 'setNewPassword']);
+Route::post('/save-new-password',   [AuthenController::class, 'saveNesPassword']);
+Route::get('/logout',               [AuthenController::class, 'logout']);
+
+
 /* CMS */
 Route::prefix('cms')->group(function() {
-    Route::get('/', [DashboardController::class, 'index']);
-    Route::get('index', [DashboardController::class, 'index']);
-    Route::get('home', [DashboardController::class, 'index']);
+    Route::get('/',                 [DashboardController::class, 'index']);
+    Route::post('/upload/{slug}',   [DashboardController::class,  'upload']);
 
-    Route::get('users', [CMSUserController::class, 'index']);
-    Route::get('users/add', [CMSUserController::class, 'actionAdd']);
-    Route::get('users/edit/{id}/{name}', [CMSUserController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'users'], function() {
+        Route::get('/',                         [CMSUserController::class,  'index']);
+        Route::get('/new',                      [CMSUserController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSUserController::class,  'modify']);
+        Route::post('/process',                 [CMSUserController::class,  'process']);
+        Route::get('/onoff/{slug}/{status}',    [CMSUserController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSUserController::class,  'delete']);
+    });
 
-    Route::get('groups', [CMSGroupController::class, 'index']);
-    Route::get('groups/add', [CMSGroupController::class, 'actionAdd']);
-    Route::get('groups/edit/{id}/{name}', [CMSGroupController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'groups'], function() {
+        Route::get('/',                         [CMSGroupController::class,  'index']);
+        Route::get('/new',                      [CMSGroupController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSGroupController::class,  'modify']);
+        Route::post('/process',                 [CMSGroupController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSGroupController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSGroupController::class,  'delete']);
+    });
 
-    Route::get('doctor', [CMSDoctorController::class, 'index']);
-    Route::get('doctor/add', [CMSDoctorController::class, 'actionAdd']);
-    Route::get('doctor/edit/{id}/{name}', [CMSDoctorController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'panorama'], function() {
+        Route::get('/',                         [CMSPanoController::class,  'index']);
+        Route::get('/new',                      [CMSPanoController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSPanoController::class,  'modify']);
+        Route::post('/process',                 [CMSPanoController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSPanoController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSPanoController::class,  'delete']);
+    });
 
-    Route::get('article', [CMSArticleController::class, 'index']);
-    Route::get('article/add', [CMSArticleController::class, 'actionAdd']);
-    Route::get('article/edit/{id}/{name}', [CMSArticleController::class, 'actionEdit']);
-    Route::post('article/save', [CMSArticleController::class, 'actionSave']);
+    Route::group(['namespace' => '', 'prefix' => 'doctor'], function() {
+        Route::get('/',                         [CMSDoctorController::class,  'index']);
+        Route::get('/new',                      [CMSDoctorController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSDoctorController::class,  'modify']);
+        Route::post('/process',                 [CMSDoctorController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSDoctorController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSDoctorController::class,  'delete']);
+    });
 
-    Route::get('service', [CMSServiceController::class, 'index']);
-    Route::get('service/add', [CMSServiceController::class, 'actionAdd']);
-    Route::get('service/edit/{id}/{name}', [CMSServiceController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'article'], function() {
+        Route::get('/',                         [CMSArticleController::class,  'index']);
+        Route::get('/new',                      [CMSArticleController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSArticleController::class,  'modify']);
+        Route::post('/process',                 [CMSArticleController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSArticleController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSArticleController::class,  'delete']);
+    });
 
-    Route::get('seo', [CMSSeoController::class, 'index']);
-    Route::get('seo/add', [CMSSeoController::class, 'actionAdd']);
-    Route::get('seo/edit/{id}/{name}', [CMSSeoController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'service'], function() {
+        Route::get('/',                         [CMSServiceController::class,  'index']);
+        Route::get('/new',                      [CMSServiceController::class,  'modify']);
+        Route::get('/modify/{id}/{slug}',       [CMSServiceController::class,  'modify']);
+        Route::post('/process',                 [CMSServiceController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSServiceController::class,  'onoff']);
+        Route::get('/delete/{id}',              [CMSServiceController::class,  'delete']);
+    });
 
-    Route::get('user', [CMSUserController::class, 'index']);
-    Route::get('user/add', [CMSUserController::class, 'actionAdd']);
-    Route::get('user/edit/{id}/{name}', [CMSUserController::class, 'actionEdit']);
+    Route::group(['namespace' => '', 'prefix' => 'profile'], function() {
+        Route::get('/',                         [CMSServiceController::class,  'index']);
+        Route::get('/modify',                   [CMSServiceController::class,  'modify']);
+        Route::post('/process',                 [CMSServiceController::class,  'process']);
+        Route::get('/onoff/{id}/{status}',      [CMSServiceController::class,  'onoff']);
+    });
+
 });
+

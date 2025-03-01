@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
 
@@ -6,18 +6,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
-<style>
-/* external css: flickity.css */
-.ppolicy {
-  padding: 25px 0;
-  margin-bottom: 50px;
-  background-color: #5dc9c9;
-  color: white;
-}
-.policy__main h1, .policy__main p {
-  margin: 0;
-}
-</style>
+
 
 <section class="ppolicy" id="vision_mission">
   <div class="container">

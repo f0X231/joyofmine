@@ -1,24 +1,6 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
-
-<style>
-  .article__main {
-      margin: 50px 0 10px 0;
-  }
-  .sortTxt {
-      margin: 0 14px;
-  }
-  .lineFull {
-      width: 100%;
-      height: 1px;
-      background-color: #C8C8C8;
-      margin: 0;
-  }
-  .article__txt {
-    padding: 8px 35px;
-  }
-</style>
 
 <div class="container">
     <div class="row">
@@ -27,7 +9,7 @@
       </div>
     </div>
 
-    <div class="row article__main">
+    <div class="row article__main_article_detail">
       <div class="col-12">
           <h1 class="colorPrimary">{{$data['title']['th']}}</h1>
       </div>

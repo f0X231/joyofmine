@@ -1,49 +1,15 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
-
-<style>
-    .objectFitcover {
-        object-fit: cover;
-    }
-    .doctor__main {
-        margin: 80px 0 50px 0;
-    }
-    .line {
-        background-color: #5dc9c9;
-        height: 2px;
-    }
-    .doctor__education {
-        padding-left: 25px;
-        font-size: 1.5rem;
-    }
-    .doctor__work{
-        background-color: #5dc9c9;
-        color: white;
-        padding: 25px 0;
-    }
-    .doctor__work__detail {
-        padding-left: 25px;
-        font-size: 1.5rem;
-    }
-    .doctor__extension {   
-        font-size: 1.5rem
-    }
-    .doctor__extension h2 {
-        color: #5dc9c9;
-        margin-top: 50px;
-        font-size: 2rem;
-    }
-</style>
 
 @include('includes.banner')
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-5 col-12 doctor__main">
-            <img src="{{$data['picture']}}?ver=123" class="objectFitcover" height="460" width="100%" />
+        <div class="col-sm-5 col-12 doctor__main2">
+            <img src="{{$data['picture']}}?ver=987" class="objectFitcover" height="460" width="100%" />
         </div>
-        <div class="col-sm-7 col-12 doctor__main">
+        <div class="col-sm-7 col-12 doctor__main2">
             <h1 class="fontSize3rem colorPrimary">{{$data['name']['th']}}</h1>
             @if(!empty($data['nickname']))
                 <h2 class="colorPrimary">( {{$data['nickname']}} )</h2>

@@ -196,10 +196,10 @@ class DoctorController extends Controller
                                 config('global.sitename').'occupational-therapist/'.$data[0]['id'].'/'.$this->make_slug($data[0]['name']['th'])    );
 
         return view('pages.occupationalTherapistProfile', [  'seo'       => $seo,
-                                                            'banner'    => $banner, 
-                                                            'data'      => $data[0],
-                                                            'services'  => $services,
-                                                            'doctor'    => $doctor      ]);
+                                                    'banner'    => $banner, 
+                                                    'data'      => $data[0],
+                                                    'services'  => $services,
+                                                    'doctor'    => $doctor      ]);
     }
 
     public function make_slug($string) {

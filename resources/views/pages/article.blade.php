@@ -1,45 +1,9 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
 
-<style>
-.article__main {
-    margin: 50px 0 80px 0;
-}
-.sortTxt {
-    margin: 0 14px;
-}
-.lineFull {
-    width: 100%;
-    height: 1px;
-    background-color: #C8C8C8;
-    margin: 0;
-}
-.artical__item {
-    width: 100%;
-    background: white;
-    color: black;
-    box-shadow: 0px 0px 0px grey;
-    -webkit-transition:  box-shadow .6s ease-out;
-    box-shadow: .8px .9px 3px grey;
-}
-.artical__item:hover{
-    color: black;
-    box-shadow: 1px 8px 20px grey;
-    -webkit-transition:  box-shadow .6s ease-in;
-}
-.artical__item p {
-    font-size: 2rem;
-    padding: 8px;
-    min-height: 120px;
-}
-.page-link {
-    font-size: 1.5em;
-}
-
-</style>
 <div class="container">
-    <div class="row article__main">
+    <div class="row article__main__article">
         <div class="col-sm-6 col-12">
             <h1 class="colorPrimary">{{ __('article.title') }}</h1>
         </div>

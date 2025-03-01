@@ -11,6 +11,8 @@ class ServiceController extends Controller
 {
     public function index()
     {
+        parent::chkSessionAuthen();
+        
         // Get list of Services
         $data = array();
         $services = Services::orderBy('order_no', 'asc')->get();

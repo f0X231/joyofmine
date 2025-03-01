@@ -1,4 +1,4 @@
-@extends('layouts.cms')
+@extends('layouts.adminTemplate')
 
 @section('cmscontent')
 <script src="https://cdn.tiny.cloud/1/vvmxdjqlzqoamwwjwyjjyilmy2dpch13bxw7kl5wx28p25s9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

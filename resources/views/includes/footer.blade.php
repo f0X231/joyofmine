@@ -46,11 +46,11 @@
           <h4 class="footer__middle_title">
             <a href="{{ URL::to('doctor') }}" class="colorWhite">{{ __('default.footer_header_doctors') }}</a>
           </h4>
-          <ul class="footet__list__item list-unstyled d-none d-sm-block">
+          {{-- <ul class="footet__list__item list-unstyled d-none d-sm-block">
             @foreach ($doctor as $item)
               <li><a href="{{$item['slug']['th']}}" class="colorWhite">{{$item['title']['th']}}</a></li>
             @endforeach
-          </ul>
+          </ul> --}}
         </div>
         <!--Column5-->
         <div class="col-md-3 col-sm-6 col-12">
@@ -102,94 +102,3 @@
     </div>
   </div>
 </footer>
-
-<style>
-  #btn-line {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    border-radius: 4px;
-    position: fixed;
-    bottom: 110px;
-    right: 35px;
-    transition: background-color .3s, 
-      opacity .5s, visibility .5s;
-    /* opacity: 0;
-    visibility: hidden; */
-    z-index: 99999;
-  }
-/* Styles for the content section */
-
-/* .content {
-  width: 77%;
-  margin: 50px auto;
-  font-family: 'Merriweather', serif;
-  font-size: 17px;
-  color: #6c767a;
-  line-height: 1.9;
-}
-@media (min-width: 500px) {
-  .content {
-    width: 43%;
-  }
-  #button {
-    margin: 30px;
-  }
-}
-.content h1 {
-  margin-bottom: -10px;
-  color: #03a9f4;
-  line-height: 1.5;
-}
-.content h3 {
-  font-style: italic;
-  color: #96a2a7;
-} */
-</style>
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      xfbml            : true,
-      version          : 'v9.0'
-    });
-  };
-
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-
-// var btnLineApps = $('#btn-line');
-
-// $(window).scroll(function() {
-//   if ($(window).scrollTop() > 300) {
-//     btnLineApps.addClass('show');
-//   } else {
-//     btnLineApps.removeClass('show');
-//   }
-// });
-
-// btnLineApps.on('click', function(e) {
-//   e.preventDefault();
-//   $('html, body').animate({scrollTop:0}, '300');
-// });
-
-
-</script>
-
-<!-- Your Chat Plugin code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="114214706998927"
-  theme_color="#5dc9c9"
-  logged_in_greeting="Joy of minds สวัสดีค่ะ หากท่านมีข้อสงสัยใดสามารถสอบถามได้ ทางเราจะรีบตอบกลับโดยเร็วที่สุดค่ะ"
-  logged_out_greeting="Joy of minds ขอบคุณสำหรับการติดต่อค่ะ">
-</div>

@@ -1,38 +1,6 @@
-@extends('layouts.default')
+@extends('layouts.jomTemplate')
 
 @section('content')
-
-<style>
-  .services__main {
-    margin: 50px 0;
-  }
-  .services__main h1, 
-  .services__main p {
-    margin-bottom: 0px;
-  }
-  .services__main p {
-    text-indent: 50px;
-  }
-  .services__item {
-    width: 100%;
-    background: white;
-    color: black;
-    box-shadow: 0px 0px 0px grey;
-    -webkit-transition:  box-shadow .6s ease-out;
-    box-shadow: .8px .9px 3px grey;
-  }
-  .services__item:hover{
-    color: black;
-    box-shadow: 1px 8px 20px grey;
-    -webkit-transition:  box-shadow .6s ease-in;
-  }
-  .services__item__title {
-    padding: 25px 0;
-  }
-  .list-article {
-    font-size: 1.5em;
-  }
-</style>
 
 @include('includes.banner')
 
