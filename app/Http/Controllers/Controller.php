@@ -156,8 +156,8 @@ class Controller extends BaseController
 
     public function chkSessionAuthen()
     {
-        $getAdminInfo = Session::get('admin');
-        if(empty($getAdminInfo)) {
+        $getProfileInfo = Session::get('loginProfile');
+        if(empty($getProfileInfo)) {
             header('Location: /login');
             exit;
         }

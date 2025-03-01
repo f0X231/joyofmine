@@ -42,4 +42,10 @@ return [
             'basec'
         ]
     ],
+    'roles' => [
+        'list' => [
+            'title'     => 'Roles',
+            'btn_add'   => 'Add New Roles',
+        ]
+    ],
 ];

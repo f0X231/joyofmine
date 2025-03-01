@@ -40,4 +40,18 @@ return [
             'btn_add'   => 'Add New Panorama',
         ]
     ],
+    'groups' => [
+        'list' => [
+            'title'     => 'Roles',
+            'btn_add'   => 'Add New Roles',
+        ],
+        'modify' => [
+            'title'     => 'Modify Roles',
+            'name'      => 'Name',
+            'display'   => 'Display',
+            'status'    => 'Status',
+            'btn_save'  => 'Save',
+            'btn_cancel'=> 'Cancel',
+        ],
+    ],
 ];

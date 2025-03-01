@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Crypt;
 
 use App\Models\Users as usersModel;
 use App\Models\Logs as logsModel;
+use App\Models\Roles as rolesModel;
+use App\Models\Authorization as authModel;
+use App\Models\AuthorizationPage as authPageModel;
 
 
 class AuthenticationController extends Controller
@@ -64,6 +67,23 @@ class AuthenticationController extends Controller
         $saveLogs->created_at = $date->format('Y-m-d H:i:s');
         $saveLogs->save();
 
+        $getRoles = rolesModel::where([['id', '=', $getUsers[0]['role_id']], ['is_active', '=', 'Y'], ['is_delete', '=', 'N']])->get()->toArray();
+        $getPages = authPageModel::where([['is_active', '=', 'Y'], ['is_delete', '=', 'N']])->get()->toArray();
+        $getAuth = authModel::where([['roles_id', '=', $getUsers[0]['role_id']]])->get()->toArray();
+        $listAuth = [];
+
+        foreach ($getAuth as $key => $value) {
+          $tmpPageId = $value['page_id'];
+          $tmpAuthrize = $value['status'];
+          $tmpPageName = $this->getById($getPages, $tmpPageId);
+
+          $listAuth[] = array(
+            'id'        => $tmpPageId,
+            'pagename'  => $tmpPageName['pagename'] ? $tmpPageName['pagename'] : '',
+            'status'    => $tmpAuthrize
+          );
+        }
+
         $adminInfo = array(
           'id'          => Crypt::encryptString($getUsers[0]['id']),
           'name'        => $getUsers[0]['name'],
@@ -71,9 +91,12 @@ class AuthenticationController extends Controller
           'picture'     => $getUsers[0]['avatar'],
           'phone'       => $getUsers[0]['phone'],
           'role'        => $getUsers[0]['role_id'],
+          'role_name'   => $getRoles[0]['name'],
+          'auth'        => $listAuth,
           'stamptime'   => $date->format('Y-m-d H:i:s')
         );
-        Session::put('admin', $adminInfo);
+
+        Session::put('loginProfile', $adminInfo);
 
         return redirect('/cms/');
         exit;
@@ -87,6 +110,15 @@ class AuthenticationController extends Controller
       exit;
     }
     exit;
+  }
+
+  private function getById($array, $id) {
+    foreach ($array as $item) {
+        if ($item['id'] == $id) {
+            return $item;
+        }
+    }
+    return null; // Return null if the item with the specified ID is not found
   }
 
   /*
